@@ -14,15 +14,15 @@ use onebone\economyapi\EconomyAPI;
 class CustomShop extends PluginBase implements Listener {
 
     public function reduceMoney(Player $player, int $amount){
-        EconomyAPI::getInstance()->reduceMoney($player, $amount);
+        return EconomyAPI::getInstance()->reduceMoney($player, $amount);
     }
 
     public function addMoney(Player $player, int $amount){
-        EconomyAPI::getInstance()->addMoney($player, $amount);
+        return EconomyAPI::getInstance()->addMoney($player, $amount);
     }
 
     public function myMoney(Player $player){
-        EconomyAPI::getInstance()->myMoney($player);
+        return EconomyAPI::getInstance()->myMoney($player);
     }
 
     public function onEnable(){
@@ -37,14 +37,14 @@ class CustomShop extends PluginBase implements Listener {
         }
     }
 
-    public function sendForm($player){
+    public function sendForm(Player $player){
         $form = new SimpleForm(function(Player $player, $data){
             $result = $data;
             if($result === null){
                 return true;
             }
             if($result == 0){
-                //
+                $this->sendAllShop($player);
             }
             if($result == 1){
                 //
@@ -53,10 +53,32 @@ class CustomShop extends PluginBase implements Listener {
                 //
             }
         });
-        $form->setTitle("[CS] > Menu");
+        $form->setTitle($this->getPrefix() . " Menu");
         $form->addButton("All shop");
         $form->addButton("Search category");
         $form->addButton("Close", 0, "textures/blocks/barrier");
+        $form->sendToPlayer($player);
+    }
+
+    public function sendAllShop(Player $player){
+        $form = new SimpleForm(function(Player $player, $data){
+            $result = $data;
+            if($result === null){
+                return true;
+            }
+            if($result == 0){
+                $money = $this->myMoney($player);
+                $amount = 20000;
+                if($money >= $amount){
+                    $this->reduceMoney($player, $amount);
+                    return true;
+                }
+            }
+        });
+        $price = 20;
+        $money = $this->myMoney($player);
+        $form->setTitle($this->getPrefix() . " All Shop");
+        $form->addButton("This is $" . $price . "000 for price");
         $form->sendToPlayer($player);
     }
 
