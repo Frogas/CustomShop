@@ -6,6 +6,10 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\command\{CommandSender, Command};
+//download in (https://github.com/jojoe77777/FormAPI
+use jojoe77777\FormAPI\SimpleForm;
+//download in (https://github.com/onebone/EconomyAPI
+use onebone\economyapi\EconomyAPI;
 
 class CustomShop extends PluginBase implements Listener {
 
@@ -26,6 +30,15 @@ class CustomShop extends PluginBase implements Listener {
             $result = $data;
             if($result === null){
                 return true;
+            }
+            if($result == 0){
+                //
+            }
+            if($result == 1){
+                //
+            }
+            if($result == 2){
+                //
             }
         });
         $form->setTitle("[CS] > Menu");
