@@ -78,6 +78,7 @@ class CustomShop extends PluginBase implements Listener {
         $price = 20;
         $money = $this->myMoney($player);
         $form->setTitle($this->getPrefix() . " All Shop");
+        $form->setContent("Your balance is: " . $money);
         $form->addButton("This is $" . $price . "000 for price");
         $form->sendToPlayer($player);
     }
