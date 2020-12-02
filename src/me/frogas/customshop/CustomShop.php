@@ -13,6 +13,18 @@ use onebone\economyapi\EconomyAPI;
 
 class CustomShop extends PluginBase implements Listener {
 
+    public function reduceMoney(Player $player, int $amount){
+        EconomyAPI::getInstance()->reduceMoney($player, $amount);
+    }
+
+    public function addMoney(Player $player, int $amount){
+        EconomyAPI::getInstance()->addMoney($player, $amount);
+    }
+
+    public function myMoney(Player $player){
+        EconomyAPI::getInstance()->myMoney($player);
+    }
+
     public function onEnable(){
         $this->getServer()->getLogger()->info("Loaded Plugin");
     }
