@@ -6,9 +6,9 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\command\{CommandSender, Command};
-//download in (https://github.com/jojoe77777/FormAPI
+//download in (https://github.com/jojoe77777/FormAPI)
 use jojoe77777\FormAPI\SimpleForm;
-//download in (https://github.com/onebone/EconomyAPI
+//download in (https://github.com/onebone/EconomyAPI)
 use onebone\economyapi\EconomyAPI;
 
 class CustomShop extends PluginBase implements Listener {
